@@ -1,0 +1,7 @@
+name = "AdventOfCode2020"
+uuid = "82779f9d-6177-4b61-aadc-1750be0a5a53"
+authors = ["john"]
+version = "0.1.0"
+
+[compat]
+julia = "1.12"

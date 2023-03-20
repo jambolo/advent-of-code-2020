@@ -1,23 +1,45 @@
-# Advent Of Code 2020
-# Day 6
+module Day06
 
-test = false
-part1 = true
+using ..Utils
 
-function day06()
-    filename = test ? "day06-test.txt" : "day06-input.txt"
-    lines = open(filename) do f
-        readlines(f)
+function day06(; part::Int=2, example::Bool=false)
+    lines = readinput(6; example)
+
+    if part == 1
+        day06_part1(lines)
+    elseif part == 2
+        day06_part2(lines)
     end
+end
 
+function day06_part1(lines)
     groups = Array{Set{Char}, 1}()
     group = Set{Char}()
+    for line in lines
+        if isempty(line)
+            push!(groups, group)
+            group = Set{Char}()
+        else
+            for c in line
+                push!(group, c)
+            end
+        end
+    end
+
+    if !isempty(group)
+        push!(groups, group)
+    end
+
+    total = sum(length, groups)
+    println("Day 6, part 1: Sum is $total")
+end
+
+function day06_part2(lines)
     intersections = Array{Set{Char}, 1}()
     intersection = Set{Char}()
     initialized = false
     for line in lines
         if isempty(line)
-            push!(groups, group)
             push!(intersections, intersection)
             group = Set{Char}()
             intersection = Set{Char}()
@@ -25,7 +47,6 @@ function day06()
         else
             person = Set{Char}()
             for c in line
-                push!(group, c)
                 push!(person, c)
             end
             if initialized
@@ -36,18 +57,15 @@ function day06()
             end
         end
     end
-    
-    if !isempty(group)
-        push!(groups, group)
-    end
 
     if !isempty(intersection)
         push!(intersections, intersection)
     end
 
-    part1sum = sum(length, groups)
-    println("part1sum is $part1sum")
+    total = sum(length, intersections)
+    println("Day 6, part 2: Sum is $total")
+end
 
-    part2sum = sum(length, intersections)
-    println("part2sum is $part2sum")
+export day06
+
 end

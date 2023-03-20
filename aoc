@@ -1,0 +1,35 @@
+#!/usr/bin/env julia
+
+if length(ARGS) < 1
+    println("Usage: ./aoc <day> [--part <1|2>] [--example]")
+    println("Examples:")
+    println("  ./aoc 3              # Run day 3, part 2, input file")
+    println("  ./aoc 3 --part 1     # Run day 3, part 1, input file")
+    println("  ./aoc 3 --example    # Run day 3, part 2, example file")
+    println("  ./aoc 3 --part 1 --example  # Run day 3, part 1, example file")
+    exit(1)
+end
+
+day = parse(Int, ARGS[1])
+part = 2
+example = false
+
+let i = 2
+    while i <= length(ARGS)
+        if ARGS[i] == "--part"
+            i += 1
+            if i <= length(ARGS)
+                global part = parse(Int, ARGS[i])
+            end
+        elseif ARGS[i] == "--example"
+            global example = true
+        end
+        i += 1
+    end
+end
+
+push!(LOAD_PATH, joinpath(@__DIR__, "src"))
+using AdventOfCode2020
+
+day_func = getfield(AdventOfCode2020, Symbol("day$(lpad(day, 2, '0'))"))
+day_func(part=part, example=example)

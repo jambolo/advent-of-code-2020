@@ -1,8 +1,6 @@
-# Advent Of Code 2020
-# Day 7
+module Day07
 
-test = false
-part1 = false
+using ..Utils
 
 mutable struct Group
     name::String
@@ -15,12 +13,19 @@ struct BagInfo
     sums::Dict{String, Int64}
 end
 
-function day07()
-    filename = test ? "day07-test.txt" : "day07-input.txt"
-    lines = open(filename) do f
-        readlines(f)
-    end
+function day07(; part::Int=2, example::Bool=false)
+    lines = readinput(7; example)
 
+    bags = parse_bags(lines)
+
+    if part == 1
+        day07_part1(bags)
+    elseif part == 2
+        day07_part2(bags)
+    end
+end
+
+function parse_bags(lines)
     bags = Dict{String, BagInfo}()
     for line in lines
         substrings = split(line, ',')
@@ -46,7 +51,7 @@ function day07()
             groups = Array{Group, 1}()
             include!(bags, groups, c)
             for g in groups
-                if g.name in keys(bag.sums)
+                if haskey(bag.sums, g.name)
                     bag.sums[g.name] += g.count
                 else
                     bag.sums[g.name] = g.count
@@ -54,15 +59,7 @@ function day07()
             end
         end
     end
-
-    count = count(bag -> "shiny gold" in keys(bag.sums), value(bags))
-    println("shiny gold bags are contained in $count bags")
-
-    if !part1
-        shinygoldbag = bags["shiny gold"]
-        count = sum(values(shinygoldbag.sums))
-        println("A shiny gold bag contains $count bags")
-    end
+    return bags
 end
 
 function include!(bags::Dict{String, BagInfo}, groups0::Array{Group, 1}, g::Group)
@@ -76,4 +73,19 @@ function include!(bags::Dict{String, BagInfo}, groups0::Array{Group, 1}, g::Grou
         g1.count *= g.count
     end
     append!(groups0, groups1)
+end
+
+function day07_part1(bags::Dict{String, BagInfo})
+    count = Base.count(bag -> "shiny gold" in keys(bag.sums), values(bags))
+    println("Day 7, part 1: $count bags")
+end
+
+function day07_part2(bags::Dict{String, BagInfo})
+    shinygoldbag = bags["shiny gold"]
+    count = sum(values(shinygoldbag.sums))
+    println("Day 7, part 2: $count bags")
+end
+
+export day07
+
 end
