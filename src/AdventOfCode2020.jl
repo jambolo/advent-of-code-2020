@@ -15,11 +15,12 @@ include("Day09.jl")
 include("Day10.jl")
 include("Day11.jl")
 include("Day12.jl")
+include("Day13.jl")
 
 using .Day01, .Day02, .Day03, .Day04, .Day05
-using .Day06, .Day07, .Day08, .Day09, .Day10, .Day11, .Day12
+using .Day06, .Day07, .Day08, .Day09, .Day10, .Day11, .Day12, .Day13
 
 export day01, day02, day03, day04, day05
-export day06, day07, day08, day09, day10, day11, day12
+export day06, day07, day08, day09, day10, day11, day12, day13
 
 end

@@ -98,3 +98,10 @@ Coming back after a year. I have forgotten everything about Julia. Thankfully, t
 Easy again. Nothing special at all.
 
 **Answers:** Part 1: `2879` | Part 2: `178986`
+
+### Day 13
+
+Modular math... cool. I could brute force it, but I bet that wouldn't be practical. Luckily, Julia has modular inverse built in! This problem seems pretty basic (Chinese Remainder Theorem), so I wouldn't be suprised if there is a library somewhere that solves it, but I implemented the solution myself.
+
+**Answers:** Part 1: `4207` | Part 2: `725850285300475`
+
