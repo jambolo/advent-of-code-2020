@@ -89,6 +89,12 @@ Finally, a puzzle with a little bit of a challenge. Is there a way to create a D
 
 ### Day 11
 
-Coming back after a year. I have forgotten everything about Julia. Thankfully, part 1 is simple and AI is very helpful.
+Coming back after a year. I have forgotten everything about Julia. Thankfully, this day is simple and AI is very helpful.
 
 **Answers:** Part 1: `2316` | Part 2: `2128`
+
+### Day 12
+
+Easy again. Nothing special at all.
+
+**Answers:** Part 1: `2879` | Part 2: `178986`
