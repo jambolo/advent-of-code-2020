@@ -105,3 +105,8 @@ Modular math... cool. I could brute force it, but I bet that wouldn't be practic
 
 **Answers:** Part 1: `4207` | Part 2: `725850285300475`
 
+### Day 14
+
+I enjoy a good bit twiddling now and again ...
+
+**Answers:** Part 1: `6631883285184` | Part 2: `3161838538691`
