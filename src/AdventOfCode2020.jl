@@ -19,13 +19,12 @@ include("Day13.jl")
 include("Day14.jl")
 include("Day15.jl")
 include("Day16.jl")
+include("Day17.jl")
 
-using .Day01, .Day02, .Day03, .Day04, .Day05
-using .Day06, .Day07, .Day08, .Day09, .Day10
-using .Day11, .Day12, .Day13, .Day14, .Day15, .Day16
+using .Day01, .Day02, .Day03, .Day04, .Day05, .Day06, .Day07, .Day08, .Day09, .Day10
+using .Day11, .Day12, .Day13, .Day14, .Day15, .Day16, .Day17
 
-export day01, day02, day03, day04, day05
-export day06, day07, day08, day09, day10
-export day11, day12, day13, day14, day15, day16
+export day01, day02, day03, day04, day05, day06, day07, day08, day09, day10
+export day11, day12, day13, day14, day15, day16, day17
 
 end

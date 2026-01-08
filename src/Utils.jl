@@ -1,6 +1,6 @@
 module Utils
 
-export open_input_file, read_ints, read_lines, read_map, read_comma_separated_ints
+export open_input_file, read_ints, read_lines, read_map, read_comma_separated_ints, print_map
 
 function open_input_file(f::Function, day::Int; example::Bool=false)
     suffix = example ? "example" : "input"
@@ -32,6 +32,19 @@ function read_comma_separated_ints(day::Int; example::Bool=false)
     end
     ints = split(line, ",")
     return parse.(Int64, ints)
+end
+
+function print_map(map)
+    println("+-", "-" ^ (size(map, 2) * 2), "+")
+    for row in axes(map, 1)
+        print("| ")
+        for col in axes(map, 2)
+            print(map[row, col], " ")
+        end
+        println("|")
+    end
+    println("+-", "-" ^ (size(map, 2) * 2), "+")
+
 end
 
 end

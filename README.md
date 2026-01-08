@@ -122,3 +122,9 @@ I tried to solve it the naive way because I was feeling lazy. After all 30,000,0
 The problem with doing old AoC puzzles is that the AI has seen them and is much to eager to write the solution for me.
 
 **Answers:** Part 1: `21956` | Part 2: `3709435214239`
+
+### Day 17
+
+The game of Life in 3/4 dimensions. Fun, but trivial. I did it the naive way, just creating a 3/4 D array. It took about 5 seconds per iteration because I only had to make the space big enough for 6 iterations, but every additional iteration would increase the time for the solution exponetially. I wonder if using a sparse array would help at higher iterations?
+
+**Answers:** Part 1: `215` | Part 2: `1728`
