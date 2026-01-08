@@ -3,7 +3,7 @@ module Day05
 using ..Utils
 
 function day05(; part::Int=2, example::Bool=false)
-    lines = readinput(5; example)
+    lines = read_lines(5; example)
 
     if part == 1
         day05_part1(lines)

@@ -3,8 +3,7 @@ module Day01
 using ..Utils
 
 function day01(; part::Int=2, example::Bool=false)
-    lines = readinput(1; example)
-    expenses = parse_ints(lines)
+    expenses = read_ints(1; example)
 
     if part == 1
         day01_part1(expenses)

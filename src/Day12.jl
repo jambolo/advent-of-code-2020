@@ -3,7 +3,7 @@ module Day12
 using ..Utils
 
 function day12(; part::Int=2, example::Bool=false)
-    lines = readinput(12; example)
+    lines = read_lines(12; example)
     # parse the movements. The first character is the direction and the rest is the amount.
     # L, R: are rotations. They change the heading of the ship. They do not move the ship.
     # N, S, E, W, F: are directions of movement.

@@ -3,7 +3,7 @@ module Day14
 using ..Utils
 
 function day14(; part::Int=2, example::Bool=false)
-    lines = readinput(14; example)
+    lines = read_lines(14; example)
 
     if part == 1
         day14_part1(lines)

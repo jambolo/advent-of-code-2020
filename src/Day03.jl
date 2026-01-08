@@ -3,7 +3,7 @@ module Day03
 using ..Utils
 
 function day03(; part::Int=2, example::Bool=false)
-    map = readinput(3; example)
+    map = read_lines(3; example)
 
     if part == 1
         day03_part1(map)

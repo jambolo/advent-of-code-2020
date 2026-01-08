@@ -3,9 +3,7 @@ module Day09
 using ..Utils
 
 function day09(; part::Int=2, example::Bool=false)
-    lines = readinput(9; example)
-
-    numbers = parse_ints(lines)
+    numbers = read_ints(9; example)
     preamblesize = example ? 5 : 25
 
     if part == 1

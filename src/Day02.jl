@@ -10,7 +10,7 @@ struct Password
 end
 
 function day02(; part::Int=2, example::Bool=false)
-    lines = readinput(2; example)
+    lines = read_lines(2; example)
     attempts = parseline.(lines)
 
     if part == 1

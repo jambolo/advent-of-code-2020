@@ -3,7 +3,7 @@ module Day11
 using ..Utils
 
 function day11(; part::Int=2, example::Bool=false)
-    map = readmap(11; example)
+    map = read_map(11; example)
     if part == 1
         day11_part1(map)
     elseif part == 2

@@ -110,3 +110,9 @@ Modular math... cool. I could brute force it, but I bet that wouldn't be practic
 I enjoy a good bit twiddling now and again ...
 
 **Answers:** Part 1: `6631883285184` | Part 2: `3161838538691`
+
+### Day 15
+
+I tried to solve it the naive way because I was feeling lazy. After all 30,000,000 isn't that much these days. Then, I realized this is O(n²). The O(n log n) method was  slightly more complicated, but much faster.
+
+**Answers:** Part 1: `319` | Part 2: `2424`

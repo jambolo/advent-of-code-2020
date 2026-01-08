@@ -3,9 +3,7 @@ module Day10
 using ..Utils
 
 function day10(; part::Int=2, example::Bool=false)
-    lines = readinput(10; example)
-
-    joltages = parse_ints(lines) |> sort
+    joltages = read_ints(10; example) |> sort
 
     if part == 1
         day10_part1(joltages)

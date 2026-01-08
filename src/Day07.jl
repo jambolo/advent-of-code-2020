@@ -14,7 +14,7 @@ struct BagInfo
 end
 
 function day07(; part::Int=2, example::Bool=false)
-    lines = readinput(7; example)
+    lines = read_lines(7; example)
 
     bags = parse_bags(lines)
 

@@ -8,7 +8,7 @@ struct Instruction
 end
 
 function day08(; part::Int=2, example::Bool=false)
-    lines = readinput(8; example)
+    lines = read_lines(8; example)
 
     instructions = parseline.(lines)
     if part == 1

@@ -3,7 +3,7 @@ module Day13
 using ..Utils
 
 function day13(; part::Int=2, example::Bool=false)
-    lines = readinput(13; example)
+    lines = read_lines(13; example)
 
     start_time = parse(Int, lines[1])
     bus_ids = [id == "x" ? nothing : parse(Int, id) for id in split(lines[2], ',')]

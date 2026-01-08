@@ -3,7 +3,7 @@ module Day04
 using ..Utils
 
 function day04(; part::Int=2, example::Bool=false)
-    lines = readinput(4; example)
+    lines = read_lines(4; example)
     passports = parse_passports(lines)
 
     if part == 1
