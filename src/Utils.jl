@@ -1,6 +1,6 @@
 module Utils
 
-export parse_ints, readinput
+export parse_ints, readinput, readmap
 
 function parse_ints(lines::Vector{String})
     parse.(Int64, lines)
@@ -13,6 +13,11 @@ function readinput(day::Int; example::Bool=false)
         readlines(f)
     end
     return lines
+end
+
+function readmap(day::Int; example::Bool=false)
+    lines = readinput(day; example)
+    return permutedims(stack(lines))
 end
 
 end

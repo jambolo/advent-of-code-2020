@@ -86,3 +86,9 @@ One annoyance with julia is that there are **many** library names in the global 
 Finally, a puzzle with a little bit of a challenge. Is there a way to create a Dict element initialized to 0 simply by referencing it? I could avoid having to use haskey() to know if I need to create the entry first.
 
 **Answers:** Part 1: `2368` | Part 2: `1727094849536`
+
+### Day 11
+
+Coming back after a year. I have forgotten everything about Julia. Thankfully, part 1 is simple and AI is very helpful.
+
+**Answers:** Part 1: `2316` | Part 2: `2128`
