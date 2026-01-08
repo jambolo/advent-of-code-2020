@@ -116,3 +116,9 @@ I enjoy a good bit twiddling now and again ...
 I tried to solve it the naive way because I was feeling lazy. After all 30,000,000 isn't that much these days. Then, I realized this is O(n²). The O(n log n) method was  slightly more complicated, but much faster.
 
 **Answers:** Part 1: `319` | Part 2: `2424`
+
+### Day 16
+
+The problem with doing old AoC puzzles is that the AI has seen them and is much to eager to write the solution for me.
+
+**Answers:** Part 1: `21956` | Part 2: `3709435214239`
