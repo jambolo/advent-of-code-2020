@@ -3,41 +3,41 @@ module Day03
 using ..Utils
 
 function day03(; part::Int=2, example::Bool=false)
-    map = read_lines(3; example)
+    grid = read_lines(3; example)
 
     if part == 1
-        day03_part1(map)
+        day03_part1(grid)
     elseif part == 2
-        day03_part2(map)
+        day03_part2(grid)
     end
 end
 
-function day03_part1(map)
-    count = traverse(map, (3, 1))
-    println("Day 3, part 1: $count trees.")
+function day03_part1(grid)
+    tree_count = traverse(grid, (3, 1))
+    println("Answer: $tree_count")
 end
 
-function day03_part2(map)
+function day03_part2(grid)
     slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
-    product = prod(slope -> traverse(map, slope), slopes)
-    println("Day 3, part 2: $product trees.")
+    product = prod(slope -> traverse(grid, slope), slopes)
+    println("Answer: $product")
 end
 
-function traverse(map, (dj, di))
-    height = length(map)
-    width = length(map[1])
+function traverse(grid, (delta_col, delta_row))
+    height = length(grid)
+    width = length(grid[1])
     i = 1
     j = 1
-    count = 0
+    tree_count = 0
     while i <= height
-        line = map[i]
-        if line[j] == '#'
-            count += 1
+        row = grid[i]
+        if row[j] == '#'
+            tree_count += 1
         end
-        i = i + di
-        j = (j - 1 + dj) % width + 1
+        i = i + delta_row
+        j = (j - 1 + delta_col) % width + 1
     end
-    return count
+    return tree_count
 end
 
 export day03

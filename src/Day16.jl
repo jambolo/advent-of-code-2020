@@ -43,8 +43,8 @@ function day16(; part::Int=2, example::Bool=false)
 end
 
 function day16_part1(fields, your_ticket, nearby_tickets)
-    rate = sum(filter(!isnothing, (ticket_is_invalid(t, fields) for t in nearby_tickets)))
-    println("Day 16, part 1: Rate = ", rate)
+    rate = sum(filter(!isnothing, [ticket_is_invalid(t, fields) for t in nearby_tickets]))
+    println("Answer: $rate")
 end
 
 function day16_part2(fields, your_ticket, nearby_tickets)
@@ -59,7 +59,7 @@ function day16_part2(fields, your_ticket, nearby_tickets)
     ticket_fields = resolve_fields(possible_fields)
 
     product = prod(your_ticket[i] for (i, name) in enumerate(ticket_fields) if startswith(name, "departure"))
-    println("Day 16, part 2: Product = ", product)
+    println("Answer: $product")
 end
 
 function resolve_fields(possible_fields)

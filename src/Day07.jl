@@ -9,7 +9,7 @@ end
 copy(g::Group) = Group(g.name, g.count)
 
 struct BagInfo
-    contains::Array{Group, 1}
+    contains::Vector{Group}
     sums::Dict{String, Int64}
 end
 
@@ -17,6 +17,7 @@ function day07(; part::Int=2, example::Bool=false)
     lines = read_lines(7; example)
 
     bags = parse_bags(lines)
+    compute_bag_totals!(bags)
 
     if part == 1
         day07_part1(bags)
@@ -31,7 +32,7 @@ function parse_bags(lines)
         substrings = split(line, ',')
         m = match(r"(\w+ \w+) bags contain (?:(?:no other)|(?:(\d+) (\w+ \w+))) bag", substrings[begin])
         name = m[1]
-        bag = BagInfo(Array{Group, 1}(), Dict{String, Int64}())
+        bag = BagInfo(Vector{Group}(), Dict{String, Int64}())
         if m[2] !== nothing
             count = parse(Int64, m[2])
             other = m[3]
@@ -45,11 +46,14 @@ function parse_bags(lines)
         end
         bags[name] = bag
     end
+    return bags
+end
 
+compute_bag_totals!(bags::Dict{String, BagInfo}) = begin
     for bag in values(bags)
-        for c in bag.contains
-            groups = Array{Group, 1}()
-            include!(bags, groups, c)
+        for contained_bag in bag.contains
+            groups = Vector{Group}()
+            collect_contained_bags!(bags, groups, contained_bag)
             for g in groups
                 if haskey(bag.sums, g.name)
                     bag.sums[g.name] += g.count
@@ -59,14 +63,13 @@ function parse_bags(lines)
             end
         end
     end
-    return bags
 end
 
-function include!(bags::Dict{String, BagInfo}, groups0::Array{Group, 1}, g::Group)
+function collect_contained_bags!(bags::Dict{String, BagInfo}, groups0::Vector{Group}, g::Group)
     bag = bags[g.name]
-    groups1 = Array{Group, 1}()
-    for c in bag.contains
-        include!(bags, groups1, c)
+    groups1 = Vector{Group}()
+    for contained_bag in bag.contains
+        collect_contained_bags!(bags, groups1, contained_bag)
     end
     push!(groups0, copy(g))
     for g1 in groups1
@@ -76,14 +79,14 @@ function include!(bags::Dict{String, BagInfo}, groups0::Array{Group, 1}, g::Grou
 end
 
 function day07_part1(bags::Dict{String, BagInfo})
-    count = Base.count(bag -> "shiny gold" in keys(bag.sums), values(bags))
-    println("Day 7, part 1: $count bags")
+    total = count(bag -> "shiny gold" in keys(bag.sums), values(bags))
+    println("Answer: $total")
 end
 
 function day07_part2(bags::Dict{String, BagInfo})
-    shinygoldbag = bags["shiny gold"]
-    count = sum(values(shinygoldbag.sums))
-    println("Day 7, part 2: $count bags")
+    shiny_gold_bag = bags["shiny gold"]
+    total = sum(values(shiny_gold_bag.sums))
+    println("Answer: $total")
 end
 
 export day07

@@ -27,23 +27,23 @@ function read_map(day::Int; example::Bool=false)
 end
 
 function read_comma_separated_ints(day::Int; example::Bool=false)
-    line = open_input_file(day; example) do f
+    csv = open_input_file(day; example) do f
         readline(f)
     end
-    ints = split(line, ",")
-    return parse.(Int64, ints)
+    values = split(csv, ",")
+    return parse.(Int64, values)
 end
 
-function print_map(map)
-    println("+-", "-" ^ (size(map, 2) * 2), "+")
-    for row in axes(map, 1)
+function print_map(grid)
+    println("+-", "-" ^ (size(grid, 2) * 2), "+")
+    for row in axes(grid, 1)
         print("| ")
-        for col in axes(map, 2)
-            print(map[row, col], " ")
+        for col in axes(grid, 2)
+            print(grid[row, col], " ")
         end
         println("|")
     end
-    println("+-", "-" ^ (size(map, 2) * 2), "+")
+    println("+-", "-" ^ (size(grid, 2) * 2), "+")
 
 end
 

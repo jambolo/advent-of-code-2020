@@ -2,6 +2,8 @@ module Day01
 
 using ..Utils
 
+const TARGET_SUM = 2020
+
 function day01(; part::Int=2, example::Bool=false)
     expenses = read_ints(1; example)
 
@@ -12,31 +14,31 @@ function day01(; part::Int=2, example::Bool=false)
     end
 end
 
-function day01_part1(expenses::Array{Int64, 1})
+function day01_part1(expenses::Vector{Int64})
 
-    expenseslength = length(expenses)
-    for i = 2:expenseslength
-        ei = expenses[i]
+    n_expenses = length(expenses)
+    for i = 2:n_expenses
+        expense_i = expenses[i]
         for j = 1:i-1
-            ej = expenses[j]
-            if ei + ej == 2020
-                println("Part 1: Product is $(ei * ej)")
+            expense_j = expenses[j]
+            if expense_i + expense_j == TARGET_SUM
+                println("Answer: $(expense_i * expense_j)")
                 return
             end
         end
     end
 end
 
-function day01_part2(expenses::Array{Int64, 1})
-    expenseslength = length(expenses)
-    for i = 3:expenseslength
-        ei = expenses[i]
+function day01_part2(expenses::Vector{Int64})
+    n_expenses = length(expenses)
+    for i = 3:n_expenses
+        expense_i = expenses[i]
         for j = 2:i-1
-            ej = expenses[j]
+            expense_j = expenses[j]
             for k = 1:j-1
-                ek = expenses[k]
-                if ei + ej + ek == 2020
-                    println("Part 2: Product is $(ei * ej * ek)")
+                expense_k = expenses[k]
+                if expense_i + expense_j + expense_k == TARGET_SUM
+                    println("Answer: $(expense_i * expense_j * expense_k)")
                     return
                 end
             end

@@ -31,7 +31,7 @@ function day06_part1(lines)
     end
 
     total = sum(length, groups)
-    println("Day 6, part 1: Sum is $total")
+    println("Answer: $total")
 end
 
 function day06_part2(lines)
@@ -41,7 +41,6 @@ function day06_part2(lines)
     for line in lines
         if isempty(line)
             push!(intersections, intersection)
-            group = Set{Char}()
             intersection = Set{Char}()
             initialized = false
         else
@@ -63,7 +62,7 @@ function day06_part2(lines)
     end
 
     total = sum(length, intersections)
-    println("Day 6, part 2: Sum is $total")
+    println("Answer: $total")
 end
 
 export day06

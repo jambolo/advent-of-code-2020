@@ -9,5 +9,5 @@ Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
 
 [compat]
 OffsetArrays = "1.17.0"
-Revise = "3.13.1"
+Revise = "3.14.2"
 julia = "1.12"

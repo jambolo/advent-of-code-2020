@@ -10,7 +10,7 @@ end
 function day08(; part::Int=2, example::Bool=false)
     lines = read_lines(8; example)
 
-    instructions = parseline.(lines)
+    instructions = parse_line.(lines)
     if part == 1
         day08_part1(instructions)
     elseif part == 2
@@ -18,14 +18,14 @@ function day08(; part::Int=2, example::Bool=false)
     end
 end
 
-function parseline(line::String)
+function parse_line(line::String)
     op, value = split(line)
     return Instruction(op, parse(Int64, value))
 end
 
 function day08_part1(instructions::Array{Instruction, 1})
         _, accumulator, _ = execute(instructions)
-        println("Day 8, part 1: Accumulator = $accumulator")
+        println("Answer: $accumulator")
 end
 
 function day08_part2(instructions::Array{Instruction, 1})
@@ -40,7 +40,7 @@ function day08_part2(instructions::Array{Instruction, 1})
         end
         finished, accumulator, _ = execute(instructions)
         if finished
-            println("Day 8, part 2: Accumulator = $accumulator")
+            println("Answer: $accumulator")
             break;
         end
         instructions[i] = instruction
@@ -48,28 +48,28 @@ function day08_part2(instructions::Array{Instruction, 1})
 end
 
 function execute(instructions::Array{Instruction, 1})
-    len = length(instructions)
-    executed = fill(false, len)
+    n_instructions = length(instructions)
+    executed = fill(false, n_instructions)
     accumulator = 0
-    corrupted = Set{Int64}()
+    corrupted_set = Set{Int64}()
     i = 1
-    while i <= len && !executed[i]
+    while i <= n_instructions && !executed[i]
         executed[i] = true
         instruction = instructions[i]
         if instruction.op == "jmp"
-            push!(corrupted, i)
+            push!(corrupted_set, i)
             i += instruction.value - 1
-            if !(0 <= i <= len)
+            if !(0 <= i <= n_instructions)
                 return (false, nothing, nothing)
             end
         elseif instruction.op == "acc"
             accumulator += instruction.value
         else
-            push!(corrupted, i)
+            push!(corrupted_set, i)
         end
         i += 1
     end
-    return (i > len, accumulator, corrupted)
+    return (i > n_instructions, accumulator, corrupted_set)
 end
 
 export day08

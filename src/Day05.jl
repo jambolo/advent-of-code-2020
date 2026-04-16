@@ -14,36 +14,36 @@ end
 
 function day05_part1(lines)
     max_id = maximum(to_id(line) for line in lines)
-    println("Day 5, part 1: highest seat ID is $max_id.")
+    println("Answer: $max_id")
 end
 
 function day05_part2(lines)
-    occupied = fill(false, 1024)
+    occupied_seats = fill(false, 1024)
     for line in lines
-        id = to_id(line)
-        occupied[id + 1] = true
+        seat_id = to_id(line)
+        occupied_seats[seat_id + 1] = true
     end
 
-    i = 1
-    while !occupied[i]
-        i += 1
+    seat_index = 1
+    while !occupied_seats[seat_index]
+        seat_index += 1
     end
-    while occupied[i]
-        i += 1
+    while occupied_seats[seat_index]
+        seat_index += 1
     end
 
-    println("Day 5, part 2: first unoccupied seat is $(i-1).")
+    println("Answer: $(seat_index-1)")
 end
 
 function to_id(s::String)
-    v = 0
+    seat_id = 0
     for c in s
-        v = v << 1
+        seat_id = seat_id << 1
         if c == 'B' || c == 'R'
-            v += 1
+            seat_id += 1
         end
     end
-    return v
+    return seat_id
 end
 
 export day05

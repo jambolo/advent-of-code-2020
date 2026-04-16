@@ -4,43 +4,43 @@ using ..Utils
 
 function day09(; part::Int=2, example::Bool=false)
     numbers = read_ints(9; example)
-    preamblesize = example ? 5 : 25
+    preamble_size = example ? 5 : 25
 
     if part == 1
-        day09_part1(numbers, preamblesize)
+        day09_part1(numbers, preamble_size)
     elseif part == 2
-        day09_part2(numbers, preamblesize)
+        day09_part2(numbers, preamble_size)
     end
 end
 
-function day09_part1(numbers, preamblesize)
-    n = firstinvalid(numbers, preamblesize)
-    println("Day 9, part 1: First invalid number is $n")
+function day09_part1(numbers, preamble_size)
+    n = first_invalid(numbers, preamble_size)
+    println("Answer: $n")
 end
 
-function day09_part2(numbers, preamblesize)
-    n = firstinvalid(numbers, preamblesize)
-    first, last = findrange(numbers, n)
-    lowest = minimum(numbers[first:last])
-    highest = maximum(numbers[first:last])
-    println("Day 9, part 2: Sum is $(lowest + highest)")
+function day09_part2(numbers, preamble_size)
+    n = first_invalid(numbers, preamble_size)
+    first_i, last_i = find_range(numbers, n)
+    lowest = minimum(numbers[first_i:last_i])
+    highest = maximum(numbers[first_i:last_i])
+    println("Answer: $(lowest + highest)")
 end
 
-function firstinvalid(numbers, preamblesize)
-    numberslength = length(numbers)
-    for i = preamblesize + 1:numberslength
+function first_invalid(numbers, preamble_size)
+    n_numbers = length(numbers)
+    for i = preamble_size + 1:n_numbers
         n = numbers[i]
-        if !pairfound(numbers, i - preamblesize, i - 1, n)
+        if !pair_found(numbers, i - preamble_size, i - 1, n)
             return n
         end
     end
 end
 
 
-function pairfound(numbers, first, last, n)
-    for i = first + 1:last
+function pair_found(numbers, first_i, last_i, n)
+    for i = first_i + 1:last_i
         ni = numbers[i]
-        for j = first:i-1
+        for j = first_i:i-1
             nj = numbers[j]
             if ni + nj == n
                 return true
@@ -50,9 +50,9 @@ function pairfound(numbers, first, last, n)
     return false
 end
 
-function findrange(numbers, n)
-    numberslength = length(numbers)
-    for i = 1:numberslength-1
+function find_range(numbers, n)
+    n_numbers = length(numbers)
+    for i = 1:n_numbers-1
         k = numbers[i] + numbers[i + 1]
         j = i + 2
         while k < n

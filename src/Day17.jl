@@ -11,47 +11,47 @@ function active_count(space)
 end
 
 function day17(; part::Int=2, example::Bool=false)
-    map = read_map(17; example)
+    grid = read_map(17; example)
 
     if part == 1
-        day17_part1(map)
+        day17_part1(grid)
     elseif part == 2
-        day17_part2(map)
+        day17_part2(grid)
     end
 end
 
-function day17_part1(map)
-    print_map(map)
-    space = create_space_3(map)
-    println("Initial active count: ", active_count(space))
+function day17_part1(grid)
+#    print_map(grid)
+    space = create_space_3(grid)
+#    println("Initial active count: ", active_count(space))
     for i in 1:6
         space = next_3(space)
-        println("$i: Active count: ", active_count(space))
+#        println("$i: Active count: ", active_count(space))
     end
-    println("Day17, part 1 count: ", active_count(space))
+    println("Answer: $(active_count(space))")
 end
 
-function day17_part2(map)
-    print_map(map)
-    space = create_space_4(map)
-    println("Initial active count: ", active_count(space))
+function day17_part2(grid)
+#    print_map(grid)
+    space = create_space_4(grid)
+#    println("Initial active count: ", active_count(space))
     for i in 1:6
         space = next_4(space)
-        println("$i: Active count: ", active_count(space))
+#        println("$i: Active count: ", active_count(space))
     end
-    println("Day17, part 2 count: ", active_count(space))
+    println("Answer: $(active_count(space))")
 end
 
-function create_space_3(map)
+function create_space_3(grid)
     expansion = 8
-    map_size = size(map, 1)
+    map_size = size(grid, 1)
     space_size = map_size + 2 * expansion
     half = map_size ÷ 2
     space_range = -half - expansion:-half + map_size + expansion - 1
     space = OffsetArray(fill('.', space_size, space_size, space_size), space_range, space_range, space_range)
-    for row in axes(map, 1)
-        for col in axes(map, 2)
-            space[row - half, col - half, 0] = map[row, col]
+    for row in axes(grid, 1)
+        for col in axes(grid, 2)
+            space[row - half, col - half, 0] = grid[row, col]
         end
     end
 
@@ -59,13 +59,13 @@ function create_space_3(map)
 end
 
 function count_neighbors_3(space, x, y, z)
-    count = 0
-    for (dx, dy, dz) in adjacent_offsets
+    neighbor_count = 0
+    for (dx, dy, dz) in adjacent_offsets_3
         if space[x + dx, y + dy, z + dz] == '#'
-            count += 1
+            neighbor_count += 1
         end
     end
-    return count
+    return neighbor_count
 end
 
 function next_3(space)
@@ -90,16 +90,16 @@ function next_3(space)
     return new_space
 end
 
-function create_space_4(map)
+function create_space_4(grid)
     expansion = 8
-    map_size = size(map, 1)
+    map_size = size(grid, 1)
     space_size = map_size + 2 * expansion
     half = map_size ÷ 2
     space_range = -half - expansion:-half + map_size + expansion - 1
     space = OffsetArray(fill('.', space_size, space_size, space_size, space_size), space_range, space_range, space_range, space_range)
-    for row in axes(map, 1)
-        for col in axes(map, 2)
-            space[row - half, col - half, 0, 0] = map[row, col]
+    for row in axes(grid, 1)
+        for col in axes(grid, 2)
+            space[row - half, col - half, 0, 0] = grid[row, col]
         end
     end
 
@@ -107,13 +107,13 @@ function create_space_4(map)
 end
 
 function count_neighbors_4(space, x, y, z, w)
-    count = 0
+    neighbor_count = 0
     for (dx, dy, dz, dw) in adjacent_offsets_4
         if space[x + dx, y + dy, z + dz, w + dw] == '#'
-            count += 1
+            neighbor_count += 1
         end
     end
-    return count
+    return neighbor_count
 end
 
 function next_4(space)

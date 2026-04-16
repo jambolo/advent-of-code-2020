@@ -30,7 +30,7 @@ function day14_part1(lines)
         end
     end
     total = sum(values(memory))
-    println("Day 14, part 1: Sum = ", total)
+    println("Answer: $total")
 end
 
 function day14_part2(lines)
@@ -59,7 +59,7 @@ function day14_part2(lines)
         end
     end
     total = sum(values(memory))
-    println("Day 14, part 2: Sum = ", total)
+    println("Answer: $total")
 end
 
 function parse_mask(mask_str::AbstractString)

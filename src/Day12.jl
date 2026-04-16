@@ -7,8 +7,8 @@ function day12(; part::Int=2, example::Bool=false)
     # parse the movements. The first character is the direction and the rest is the amount.
     # L, R: are rotations. They change the heading of the ship. They do not move the ship.
     # N, S, E, W, F: are directions of movement.
-    movements = [(line[1], parse(Int, line[2:end])) for line in lines]    
-    
+    movements = [(line[1], parse(Int, line[2:end])) for line in lines]
+
     if part == 1
         day12_part1(movements)
     elseif part == 2
@@ -19,8 +19,8 @@ end
 function day12_part1(movements)
     heading = (1, 0)  # initially facing east
     position = (0, 0) # starting at origin
-    for m in movements
-        direction, amount = m
+    for movement in movements
+        direction, amount = movement
         if direction in ('L', 'R')
             heading = turn(heading, direction, amount)
         elseif direction == 'F'
@@ -36,14 +36,14 @@ function day12_part1(movements)
             position = move(position, directions[direction], amount)
         end
     end
-    println("Day 12, part 1: distance = ", abs(position[1]) + abs(position[2]))
+    println("Answer: $(abs(position[1]) + abs(position[2]))")
 end
 
 function day12_part2(movements)
     waypoint = (10, 1)  # initial waypoint
     position = (0, 0)   # starting at origin
-    for m in movements
-        direction, amount = m
+    for movement in movements
+        direction, amount = movement
         if direction in ('L', 'R')
             waypoint = turn(waypoint, direction, amount)
         elseif direction == 'F'
@@ -59,7 +59,7 @@ function day12_part2(movements)
             waypoint = move(waypoint, directions[direction], amount)
         end
     end
-    println("Day 12, part 2: distance = ", abs(position[1]) + abs(position[2]))
+    println("Answer: $(abs(position[1]) + abs(position[2]))")
 end
 
 

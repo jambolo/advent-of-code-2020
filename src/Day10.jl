@@ -15,32 +15,32 @@ end
 function day10_part1(joltages)
     differences = [0, 0, 1]
     differences[joltages[1] - 0] += 1
-    joltageslength = length(joltages)
-    for i = 2:joltageslength
+    n_joltages = length(joltages)
+    for i = 2:n_joltages
         difference = joltages[i] - joltages[i-1]
         differences[difference] += 1
     end
-    println("Day 10, part 1, Product is $(differences[1]*differences[3])")
+    println("Answer: $(differences[1]*differences[3])")
 end
 
 function day10_part2(joltages)
-    paths = Dict{Int64, Int64}()
+    path_counts = Dict{Int64, Int64}()
     for j in joltages
-        paths[j] = 0
+        path_counts[j] = 0
     end
 
-    accumulatepaths(paths, 0, 1)
+    accumulate_paths(path_counts, 0, 1)
     for j in joltages
-        accumulatepaths(paths, j, paths[j])
+        accumulate_paths(path_counts, j, path_counts[j])
     end
 
-    println("Day 10, part 2: $(paths[joltages[end]]) possible configurations.")
+    println("Answer: $(path_counts[joltages[end]])")
 end
 
-function accumulatepaths(paths, j, k)
+function accumulate_paths(path_counts, j, k)
     for i = 1:3
-        if haskey(paths, j+i)
-            paths[j+i] += k
+        if haskey(path_counts, j+i)
+            path_counts[j+i] += k
         end
     end
 end

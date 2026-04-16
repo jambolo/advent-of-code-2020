@@ -13,13 +13,13 @@ function day04(; part::Int=2, example::Bool=false)
     end
 end
 
-function parse_passports(lines)
+function parse_passports(rows)
     passports = Vector{Dict{String, String}}()
     passport = Dict{String, String}()
-    for line in lines
-        if length(line) > 0
-            for s in eachsplit(line)
-                m = match(r"(\w+):(.+)", s)
+    for row in rows
+        if length(row) > 0
+            for field_token in eachsplit(row)
+                m = match(r"(\w+):(.+)", field_token)
                 passport[m[1]] = m[2]
             end
         else
@@ -36,16 +36,16 @@ function parse_passports(lines)
 end
 
 function day04_part1(passports)
-    count = Base.count(isvalid_part1, passports)
-    println("Day 4, part 1: $count valid passports.")
+    valid_count = count(is_valid_part1, passports)
+    println("Answer: $valid_count")
 end
 
 function day04_part2(passports)
-    count = Base.count(isvalid_part2, passports)
-    println("Day 4, part 2: $count valid passports.")
+    valid_count = count(is_valid_part2, passports)
+    println("Answer: $valid_count")
 end
 
-function isvalid_part1(passport::Dict{String, String})
+function is_valid_part1(passport::Dict{String, String})
     return "byr" in keys(passport) &&
            "iyr" in keys(passport) &&
            "eyr" in keys(passport) &&
@@ -55,27 +55,27 @@ function isvalid_part1(passport::Dict{String, String})
            "pid" in keys(passport)
 end
 
-function isvalid_part2(passport::Dict{String, String})
-    return "byr" in keys(passport) && isvalidbyr(passport["byr"]) &&
-           "iyr" in keys(passport) && isvalidiyr(passport["iyr"]) &&
-           "eyr" in keys(passport) && isvalideyr(passport["eyr"]) &&
-           "hgt" in keys(passport) && isvalidhgt(passport["hgt"]) &&
-           "hcl" in keys(passport) && isvalidhcl(passport["hcl"]) &&
-           "ecl" in keys(passport) && isvalidecl(passport["ecl"]) &&
-           "pid" in keys(passport) && isvalidpid(passport["pid"])
+function is_valid_part2(passport::Dict{String, String})
+    return "byr" in keys(passport) && is_valid_byr(passport["byr"]) &&
+           "iyr" in keys(passport) && is_valid_iyr(passport["iyr"]) &&
+           "eyr" in keys(passport) && is_valid_eyr(passport["eyr"]) &&
+           "hgt" in keys(passport) && is_valid_hgt(passport["hgt"]) &&
+           "hcl" in keys(passport) && is_valid_hcl(passport["hcl"]) &&
+           "ecl" in keys(passport) && is_valid_ecl(passport["ecl"]) &&
+           "pid" in keys(passport) && is_valid_pid(passport["pid"])
 end
 
-isvalidbyr(s::String) = match(r"^\d{4}$", s) !== nothing && 1920 <= parse(Int64, s) <= 2002
-isvalidiyr(s::String) = match(r"^\d{4}$", s) !== nothing && 2010 <= parse(Int64, s) <= 2020
-isvalideyr(s::String) = match(r"^\d{4}$", s) !== nothing && 2020 <= parse(Int64, s) <= 2030
+is_valid_byr(s::String) = match(r"^\d{4}$", s) !== nothing && 1920 <= parse(Int64, s) <= 2002
+is_valid_iyr(s::String) = match(r"^\d{4}$", s) !== nothing && 2010 <= parse(Int64, s) <= 2020
+is_valid_eyr(s::String) = match(r"^\d{4}$", s) !== nothing && 2020 <= parse(Int64, s) <= 2030
 
-function isvalidhgt(s::String)
-    m = match(r"^(\d+)(in|cm)$", s)
-    if m === nothing
+function is_valid_hgt(s::String)
+    match_results = match(r"^(\d+)(in|cm)$", s)
+    if match_results === nothing
         return false
     end
-    height = parse(Int64, m[1])
-    if m[2] == "in"
+    height = parse(Int64, match_results[1])
+    if match_results[2] == "in"
         if 59 <= height <= 76
             return true
         end
@@ -87,9 +87,9 @@ function isvalidhgt(s::String)
     return false
 end
 
-isvalidhcl(s::String) = match(r"^#[0-9a-zA-Z]{6}$", s) !== nothing
-isvalidecl(s::String) = match(r"^(amb)|(blu)|(brn)|(gry)|(grn)|(hzl)|(oth)$", s) !== nothing
-isvalidpid(s::String) = match(r"^\d{9}$", s) !== nothing
+is_valid_hcl(s::String) = match(r"^#[0-9a-zA-Z]{6}$", s) !== nothing
+is_valid_ecl(s::String) = match(r"^(amb)|(blu)|(brn)|(gry)|(grn)|(hzl)|(oth)$", s) !== nothing
+is_valid_pid(s::String) = match(r"^\d{9}$", s) !== nothing
 
 export day04
 

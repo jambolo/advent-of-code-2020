@@ -26,7 +26,7 @@ function day13_part1(start_time, bus_ids)
             soonest_bus_id = bus_id
         end
     end
-    println("Day 13, part 1: product = ", min_wait_time * soonest_bus_id)
+    println("Answer: $(min_wait_time * soonest_bus_id)")
 end
 
 function day13_part2(bus_ids)
@@ -50,7 +50,7 @@ function day13_part2(bus_ids)
     # The answer is (sum of offsets[i] * nn[i] * yy[i]) mod n
     t = sum(aa[i] * nn[i] * yy[i] for i in eachindex(constraints)) % n
 
-    println("Day 13, part 2: ", t)
+    println("Answer: $t")
 end
 
 export day13

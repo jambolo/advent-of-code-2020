@@ -1,5 +1,8 @@
 #!/usr/bin/env julia
 
+import Pkg
+Pkg.activate(@__DIR__; io=devnull)
+
 if length(ARGS) < 1
     println("Usage: ./aoc <day> [--part <1|2>] [--example]")
     println("Examples:")
@@ -28,8 +31,9 @@ let i = 2
     end
 end
 
-push!(LOAD_PATH, joinpath(@__DIR__, "src"))
 using AdventOfCode2020
+
+println("=== Day $day, part $part ===")
 
 day_func = getfield(AdventOfCode2020, Symbol("day$(lpad(day, 2, '0'))"))
 day_func(part=part, example=example)
