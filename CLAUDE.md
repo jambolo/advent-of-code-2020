@@ -4,24 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Language and Environment
 
-- Solutions implemented in Julia
-- Development environment: VS Code and Ubuntu via WSL
-- 1-based indexing (Julia convention)
-
-## Project Structure
-
-```
-  advent-of-code-2020/
-  ├── Project.toml             # Package manifest
-  ├── aoc                      # CLI runner (executable)
-  ├── src/
-  │   ├── AdventOfCode2020.jl  # Main module
-  │   ├── Utils.jl             # Shared utilities
-  │   └── Day01.jl - Day10.jl  # Solution modules
-  └── inputs/
-      ├── dayXX-input.txt      # Actual puzzle input
-      └── dayXX-example.txt    # Example/test data
-```
+- Solutions implemented in Julia 1.12
+- Development environment: VS Code on Windows (Git Bash shell or WSL)
+- Dependencies: OffsetArrays, Revise (see Project.toml)
 
 ## Running Solutions
 
@@ -29,12 +14,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ./aoc <day> [--part <1|2>] [--example]
 ```
 
-**Options:**
-
 - `--part <1|2>`: Select which part to run (default: 2)
 - `--example`: Use example input instead of actual input
-
-**Examples:**
 
 ```bash
 ./aoc 3              # Run day 3, part 2, actual input
@@ -42,17 +23,33 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ./aoc 3 --example    # Run day 3, part 2, example input
 ```
 
-## Code Patterns
+## Architecture
 
-- Each day is a module: `module DayXX`
-- Entry function: `dayXX(; part::Int=2, example::Bool=false)`
-- Input reading uses `joinpath(@__DIR__, "..", "inputs", filename)`
-- Solutions print results to stdout
-- Answers documented in README.md
+The `aoc` CLI script activates the Julia project, loads the `AdventOfCode2020` module, and dynamically dispatches to the appropriate day function.
+
+Each day is a submodule (`module DayXX`) included from `src/AdventOfCode2020.jl`. The module exports a single entry function `dayXX(; part::Int=2, example::Bool=false)` which dispatches to `dayXX_part1(...)` / `dayXX_part2(...)`.
+
+Shared input-reading utilities live in `src/Utils.jl`:
+
+- `read_lines(day; example)` — returns `Vector{String}`
+- `read_ints(day; example)` — parses each line as `Int64`
+- `read_map(day; example)` — returns a 2D `Matrix{Char}` (rows x cols)
+- `read_comma_separated_ints(day; example)` — parses CSV line
+- `open_input_file(f, day; example)` — low-level file access with callback
+
+Input files follow the naming convention `inputs/dayXX-input.txt` and `inputs/dayXX-example.txt`.
+
+All solutions output results as `println("Answer: $result")`. Expected answers are documented in README.md.
+
+## Adding a New Day
+
+1. Create `src/DayXX.jl` with `module DayXX`, `using ..Utils`, entry function, and `export dayXX`. Only skeleton code. No complete solutions.
+2. Add `include("DayXX.jl")`, `using .DayXX`, and `dayXX` to the export list in `src/AdventOfCode2020.jl`
+3. Add input files: `inputs/dayXX-input.txt` and `inputs/dayXX-example.txt`
 
 ## Julia Quirks in This Codebase
 
-- Watch for global namespace collisions with Julia library names
-- Use `haskey()` before accessing Dict elements to avoid errors
-- Array indexing is 1-based, complicates modular arithmetic
-- Type annotations used for clarity: `Array{Int64, 1}`, `Dict{Int64, Int64}`
+- Array indexing is 1-based, which complicates modular arithmetic (use `mod1` or adjust offsets)
+- `filter` does not accept lazy generators — use comprehensions `[... for ...]` not `(... for ...)`
+- Watch for global namespace collisions with Julia stdlib names
+- Use `haskey()` before accessing Dict elements that may not exist

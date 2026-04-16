@@ -181,3 +181,12 @@ The game of Life in 3/4 dimensions. Fun, but trivial. I did it the naive way, ju
 |    2 |   1728 |
 
 **Note**: Part 2 takes about 30 seconds to run.
+
+### Day 18
+
+I really don't like problems involving parsing. They are so tedious. I know that you can evaluate an expression with two stacks (Dijkstra), but I am too lazy to figure it out, so I cheated and looked it up.
+
+| Part |     Result    |
+|------|---------------|
+|    1 |  280014646144 |
+|    2 | 9966990988262 |
