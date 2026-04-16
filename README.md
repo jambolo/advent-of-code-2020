@@ -190,3 +190,12 @@ I really don't like problems involving parsing. They are so tedious. I know that
 |------|---------------|
 |    1 |  280014646144 |
 |    2 | 9966990988262 |
+
+### Day 19
+
+For part 1, there are algorithms for matching regular grammars. Luckily in this case, enumerating all possible messages and then checking for matches is reasonable, so that's what I did. In part 2, the key is to observe that the rule changes result in a valid message necessarily consisting of 2 or more instances of rule 42 followed by 1 or more instances of rule 31.
+
+| Part | Result |
+|------|--------|
+|    1 |    195 |
+|    2 |    309 |
