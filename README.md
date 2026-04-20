@@ -222,9 +222,18 @@ Pretty straight-forward. Julia provides sets and set operations that made everyt
 
 ### Day 22
 
-Got tripped up by an aliasing mistake.
+Got tripped up by an aliasing mistake, which is easy to do in Julia.
 
 | Part | Result |
 |-----:|-------:|
 |    1 |  31455 |
 |    2 |  32528 |
+
+### Day 23
+
+I have to confess I didn't know how to avoid moving 1,000,000 numbers 10,000,000 times in part 2. So, I had to cheat and look up the secret. I had considered linking groups of numbers, but that seemed too complicated because I would end up having to manage a million groups of numbers. I was so close...
+
+| Part |    Result    |
+|-----:|-------------:|
+|    1 |     95648732 |
+|    2 | 192515314252 |
