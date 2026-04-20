@@ -219,3 +219,12 @@ Pretty straight-forward. Julia provides sets and set operations that made everyt
 |-----:|---------------------------------------------------:|
 |    1 |                                               2075 |
 |    2 | zfcqk,mdtvbb,ggdbl,frpvd,mgczn,zsfzq,kdqls,kktsjbh |
+
+### Day 22
+
+Got tripped up by an aliasing mistake.
+
+| Part | Result |
+|-----:|-------:|
+|    1 |  31455 |
+|    2 |  32528 |

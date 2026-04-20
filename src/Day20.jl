@@ -42,12 +42,7 @@ mutable struct Tile
 end
 
 function day20(; part::Int=2, example::Bool=false)
-    if example
-        IMAGE_SIZE = 3
-    else
-        IMAGE_SIZE = 12
-    end
-
+    IMAGE_SIZE = example ? 3 : 12
     lines = read_lines(20; example)
 
     tiles = Vector{Tile}()
