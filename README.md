@@ -210,3 +210,12 @@ Also, why does Julia initialize matrixes as row-major, but store them as column-
 |-----:|---------------:|
 |    1 | 18482479935793 |
 |    2 |           2118 |
+
+### Day 21
+
+Pretty straight-forward. Julia provides sets and set operations that made everything simple.
+
+| Part |                       Result                       |
+|-----:|---------------------------------------------------:|
+|    1 |                                               2075 |
+|    2 | zfcqk,mdtvbb,ggdbl,frpvd,mgczn,zsfzq,kdqls,kktsjbh |

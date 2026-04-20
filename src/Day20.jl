@@ -102,14 +102,14 @@ function match_up_tiles!(tiles::Vector{Tile})
         unmatched_sides = 0
         for side_index in 1:NUM_DIRECTIONS
             matches = Vector{Tuple{Int,Int}}()
-            (side_value, flipped_side_value) = tile.sides[side_index]
+            side_value, flipped_side_value = tile.sides[side_index]
             for j in 1:length(tiles)
                 if i == j
                     continue
                 end
                 other_tile = tiles[j]
                 for other_side_index in 1:NUM_DIRECTIONS
-                    (other_side_value, other_flipped_side_value) = other_tile.sides[other_side_index]
+                    other_side_value, other_flipped_side_value = other_tile.sides[other_side_index]
                     if side_value == other_side_value ||
                        side_value == other_flipped_side_value ||
                        flipped_side_value == other_side_value ||
