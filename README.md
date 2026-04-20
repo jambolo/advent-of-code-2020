@@ -237,3 +237,12 @@ I have to confess I didn't know how to avoid moving 1,000,000 numbers 10,000,000
 |-----:|-------------:|
 |    1 |     95648732 |
 |    2 | 192515314252 |
+
+### Day 24
+
+Work on RPGs with a hex maps in my past life made this easy.
+
+| Part | Result |
+|-----:|-------:|
+|    1 |    488 |
+|    2 |   4118 |
