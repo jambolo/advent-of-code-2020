@@ -240,9 +240,18 @@ I have to confess I didn't know how to avoid moving 1,000,000 numbers 10,000,000
 
 ### Day 24
 
-Work on RPGs with a hex maps in my past life made this easy.
+Work on RPGs with a hex maps in the past made this easy.
 
 | Part | Result |
 |-----:|-------:|
 |    1 |    488 |
 |    2 |   4118 |
+
+### Day 25
+
+| Part |  Result  |
+|-----:|---------:|
+|    1 | 10187657 |
+|    2 |      N/A |
+
+**Note**: There is no part 2.

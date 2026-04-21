@@ -33,13 +33,14 @@ include("Day21.jl")
 include("Day22.jl")
 include("Day23.jl")
 include("Day24.jl")
+include("Day25.jl")
 
 using .Day01, .Day02, .Day03, .Day04, .Day05, .Day06, .Day07, .Day08, .Day09, .Day10
 using .Day11, .Day12, .Day13, .Day14, .Day15, .Day16, .Day17, .Day18, .Day19, .Day20
-using .Day21, .Day22, .Day23, .Day24
+using .Day21, .Day22, .Day23, .Day24, .Day25
 
 export day01, day02, day03, day04, day05, day06, day07, day08, day09, day10,
     day11, day12, day13, day14, day15, day16, day17, day18, day19, day20,
-    day21, day22, day23, day24
+    day21, day22, day23, day24, day25
 
 end
